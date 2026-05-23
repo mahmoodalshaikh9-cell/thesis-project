@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diver's House — Bahrain Pearling Path</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --sand: #F5F0E8;
+    --sand-dark: #E8E0CE;
+    --ink: #1A1714;
+    --ink-light: #4A4540;
+    --gold: #B8945A;
+    --gold-light: #D4B07A;
+    --white: #FDFAF6;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(253,250,246,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,148,90,0.15);
+    transition: background 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?w=1800&q=85&fit=crop');
+    background-size: cover;
+    background-position: center 40%;
+    transform: scale(1.05);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.08); }
+    to { transform: scale(1.0); }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(26,23,20,0.75) 0%,
+      rgba(26,23,20,0.2) 50%,
+      rgba(26,23,20,0.05) 100%
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 3rem 5rem;
+    max-width: 900px;
+    animation: heroFade 1.5s ease-out 0.3s both;
+  }
+  @keyframes heroFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--gold-light);
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: #FDFAF6;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-subtitle {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(253,250,246,0.75);
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(184,148,90,0.6);
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.25s, color 0.25s;
+  }
+  .hero-cta:hover {
+    background: var(--gold);
+    color: var(--white);
+    border-color: var(--gold);
+  }
+  .hero-cta svg { transition: transform 0.25s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(253,250,246,0.5);
+    z-index: 2;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: rgba(184,148,90,0.5);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop {
+    0%, 100% { transform: scaleY(1); opacity: 0.5; }
+    50% { transform: scaleY(0.5) translateY(24px); opacity: 1; }
+  }
+  /* SECTION BASE */
+  section { padding: 7rem 3rem; }
+  .section-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; }
+  /* INTRO */
+  .intro {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .intro-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink-light);
+    margin-bottom: 1.25rem;
+  }
+  .intro-text p:last-child { margin-bottom: 0; }
+  .intro-image-wrap {
+    position: relative;
+  }
+  .intro-image-wrap img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+  .intro-image-badge {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    background: var(--gold);
+    color: var(--white);
+    padding: 1.25rem 1.5rem;
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .intro-image-badge strong {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  /* PEARLING HERITAGE */
+  .heritage {
+    background: var(--sand);
+  }
+  .heritage-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .heritage-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: end;
+  }
+  .heritage-header p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink-light);
+    align-self: end;
+  }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(184,148,90,0.3);
+  }
+  .timeline-item {
+    padding: 2rem 2rem 2rem 0;
+    border-right: 1px solid rgba(184,148,90,0.2);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .timeline-item:last-child { border-right: none; padding-right: 0; }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-year {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .timeline-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-light);
+  }
+  /* GALLERY */
+  .gallery-section {
+    background: var(--white);
+    padding-top: 0;
+  }
+  .gallery-header {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding-top: 7rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 320px 320px;
+    gap: 4px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-item:first-child {
+    grid-row: 1 / 3;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-item-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(to top, rgba(26,23,20,0.7), transparent);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(253,250,246,0.85);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-item-caption { opacity: 1; }
+  /* EXPERIENCE SECTION */
+  .experience {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .experience-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .experience .section-eyebrow { color: var(--gold-light); }
+  .experience .section-title { color: var(--white); }
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+  .experience-card {
+    border-top: 1px solid rgba(184,148,90,0.3);
+    padding-top: 2rem;
+  }
+  .exp-number {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(184,148,90,0.25);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .exp-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .exp-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(253,250,246,0.55);
+  }
+  /* VISIT INFO */
+  .visit {
+    background: var(--sand);
+  }
+  .visit-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .visit-map {
+    width: 100%;
+    height: 400px;
+    background: var(--sand-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .visit-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(0.3) contrast(1.05);
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+  .info-item { }
+  .info-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .info-value {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  /* UNESCO BANNER */
+  .unesco-banner {
+    background: var(--ink);
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .unesco-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(253,250,246,0.7);
+    letter-spacing: 0.04em;
+  }
+  .unesco-text strong {
+    color: var(--gold-light);
+    font-weight: 400;
+  }
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: rgba(253,250,246,0.6);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-note {
+    font-size: 0.75rem;
+    color: rgba(253,250,246,0.3);
+    letter-spacing: 0.05em;
+  }
+  /* TOUR MODAL */
+  .tour-btn-wrap {
+    margin-top: 2rem;
+  }
+  .tour-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .tour-btn:hover { background: var(--gold-light); }
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,23,20,0.85);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--white);
+    width: min(90vw, 820px);
+    padding: 3rem;
+    position: relative;
+    animation: modalIn 0.3s ease-out;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(16px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 1.25rem; right: 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--ink-light);
+    padding: 0.25rem;
+    line-height: 1;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .modal-desc {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .virtual-tour-frame {
+    width: 100%;
+    height: 400px;
+    background: var(--sand);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--sand-dark);
+    font-family: var(--serif);
+    color: var(--ink-light);
+    gap: 0.75rem;
+  }
+  .vt-icon { font-size: 2.5rem; opacity: 0.3; }
+  .vt-label { font-size: 1.1rem; font-weight: 300; }
+  .vt-sub { font-size: 0.8rem; font-family: var(--sans); opacity: 0.6; }
+  /* FADE IN on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">Diver's House <span>·</span> Pearling Path</a>
+  <ul class="nav-links">
+    <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">UNESCO World Heritage Site · Bahrain Pearling Path</p>
+    <h1 class="hero-title">Lives built<br>beneath the <em>sea</em></h1>
+    <p class="hero-subtitle">The Diver's House in Muharraq is a window into the world of Bahrain's pearl divers — the men who risked everything beneath the Gulf's surface and returned to these walls to rest, recover, and begin again.</p>
+    <a href="#heritage" class="hero-cta">
+      Explore the site
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+<div class="unesco-banner">
+  <p class="unesco-text">
+    Listed as a <strong>UNESCO World Heritage Site</strong> since 2012 — one of the world's finest surviving testimonies to the pearling tradition
+  </p>
+</div>
+<section id="heritage">
+  <div class="intro">
+    <div class="intro-text fade-in">
+      <p class="section-eyebrow">The House</p>
+      <h2 class="section-title">The Diver's House,<br><em>soul of the path</em></h2>
+      <p>Nestled along the Pearling Path in Muharraq, the Diver's House is one of the most intimate heritage sites in Bahrain. It is where pearl divers lived between seasons — a place of rest, ritual, and community that reveals the deeply human side of the pearling trade.</p>
+      <p>The house preserves the modest yet carefully crafted domestic spaces of the divers: sleeping quarters, a central courtyard, and a majlis where stories of the sea were shared. It stands as a testament to a life defined by courage, debt, and the relentless pull of the water.</p>
+      <div class="tour-btn-wrap">
+        <button class="tour-btn" onclick="document.getElementById('tourModal').classList.add('open')">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M8 5v3.5l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Start virtual tour
+        </button>
+      </div>
+    </div>
+    <div class="intro-image-wrap fade-in" style="transition-delay:0.15s">
+      <img src="https://images.unsplash.com/photo-1569098644795-2b6c15d2c5c0?w=900&q=85&fit=crop" alt="Historic fort walls in Bahrain" />
+      <div class="intro-image-badge">
+        <strong>3.5 km</strong>
+        Pearling Path Trail
+      </div>
+    </div>
+  </div>
+</section>
+<section style="background: var(--sand); padding: 7rem 3rem;">
+  <div class="heritage-inner">
+    <div class="heritage-header">
+      <div class="fade-in">
+        <p class="section-eyebrow">A living history</p>
+        <h2 class="section-title">Centuries of<br><em>pearl culture</em></h2>
+      </div>
+      <p class="fade-in" style="transition-delay:0.1s">The pearling industry shaped every aspect of Bahraini life — architecture, economy, social structure, and identity. This timeline traces the arc of a civilization built on the sea.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2000 BC</div>
+        <div class="timeline-label">Ancient Origins</div>
+        <div class="timeline-desc">Evidence of pearl trading in Dilmun civilization, making Bahrain one of the world's earliest pearl trading centers.</div>
+      </div>
+      <div class="timeline-item" style="padding-left: 2rem;">
+        <div class="timeline-year">19th C</div>
+        <div class="timeline-label">Golden Age</div>
+        <div class="timeline-desc">Bahrain becomes the pearling capital of the world, with over 4,000 boats and 30,000 divers operating across the Gulf.</div>
+      </div>
+      <div class="timeline-item" style="padding-left: 2rem;">
+        <div class="timeline-year">1930s</div>
+        <div class="timeline-label">The Transition</div>
+        <div class="timeline-desc">The rise of Japanese cultured pearls and oil discovery mark the end of Bahrain's natural pearl industry era.</div>
+      </div>
+      <div class="timeline-item" style="padding-left: 2rem;">
+        <div class="timeline-year">2012</div>
+        <div class="timeline-label">UNESCO Legacy</div>
+        <div class="timeline-desc">The Pearling Path is inscribed as a UNESCO World Heritage Site, preserving this remarkable cultural heritage for future generations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header fade-in">
+    <p class="section-eyebrow">Visual journey</p>
+    <h2 class="section-title">The site <em>through the lens</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="images/IMG_20251001_171119.jpg" alt="Bahrain old architecture" />
+      <div class="gallery-item-caption">The Diver's House — Muharraq Heritage District</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/glove.jpg" alt="Gulf waters Bahrain" />
+      <div class="gallery-item-caption">The Pearling Waters</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/IMG_20251001_171425.jpg" alt="Traditional architecture" />
+      <div class="gallery-item-caption">Muharraq Merchant Houses</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/plate.jpg" alt="Pearl detail" />
+      <div class="gallery-item-caption">Natural Pearls of the Gulf</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/equipment.jpg" alt="Historic waterfront" />
+      <div class="gallery-item-caption">The Waterfront Promenade</div>
+    </div>
+</div>
+  </div>
+</section>
+<section class="experience" id="experience">
+  <div class="experience-inner">
+    <p class="section-eyebrow">What awaits you</p>
+    <h2 class="section-title" style="color: var(--white);">Three ways to<br><em>engage</em> with the site</h2>
+    <div class="experience-grid">
+      <div class="experience-card fade-in">
+        <div class="exp-number">01</div>
+        <h3 class="exp-title">Virtual Walkthrough</h3>
+        <p class="exp-desc">Step inside the Diver's House through an immersive 360° digital environment — explore the courtyard, sleeping quarters, and majlis, with narrated stories of the divers who called this place home between pearling seasons.</p>
+      </div>
+      <div class="experience-card fade-in" style="transition-delay:0.12s">
+        <div class="exp-number">02</div>
+        <h3 class="exp-title">Historical Narratives</h3>
+        <p class="exp-desc">Curated stories and archival records bring the pearling era to life. Follow a diver's year — from the pre-season rituals and debt agreements with merchants, to the gruelling months at sea, and the quiet return to the house in Muharraq.</p>
+      </div>
+      <div class="experience-card fade-in" style="transition-delay:0.24s">
+        <div class="exp-number">03</div>
+        <h3 class="exp-title">Plan Your Visit</h3>
+        <p class="exp-desc">Practical information for visiting the site in person — opening hours, guided tour schedules, accessibility details, and a walking route map that connects all eleven heritage sites along the Pearling Path.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="visit" id="visit">
+  <div class="visit-inner">
+    <div class="fade-in">
+      <p class="section-eyebrow">Plan your visit</p>
+      <h2 class="section-title">Find us in<br><em>Muharraq</em></h2>
+      <p style="font-size:0.95rem; font-weight:300; line-height:1.8; color:var(--ink-light); margin-bottom: 2rem;">The Diver's House is located in the heart of Muharraq's heritage district, along the Pearling Path trail. It is accessible from Bahrain International Airport in under 10 minutes and well-connected to central Manama via the Muharraq Causeway.</p>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Opening Hours</div>
+          <div class="info-value">Sat – Thu<br>8:00 am – 6:00 pm</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Admission</div>
+          <div class="info-value">Free entry<br>to all visitors</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Guided Tours</div>
+          <div class="info-value">Available on request<br>Arabic & English</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Contact</div>
+          <div class="info-value">Bahrain Tourism<br>& Exhibitions Authority</div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in" style="transition-delay:0.1s">
+      <div class="visit-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3576.8!2d50.6132!3d26.2589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a57577777777%3A0x1!2sBu+Maher+Fort%2C+Muharraq!5e0!3m2!1sen!2sbh!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          title="Bu Maher Fort location map">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">Diver's House <span>·</span> Pearling Path, Bahrain</div>
+  <div class="footer-note">A UNESCO World Heritage Site · Developed as part of WM8008 Thesis 2026</div>
+</footer>
+<div class="modal-overlay" id="tourModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box" style="width: min(95vw, 1200px);">
+    <button class="modal-close" onclick="document.getElementById('tourModal').classList.remove('open')" aria-label="Close modal">✕</button>
+    <h2 class="modal-title">Virtual Tour — Diver's House</h2>
+    <p class="modal-desc">Step inside the Diver's House along Muharraq's Pearling Path. This interactive Unity WebGL experience guides you through the house's key spaces, with narrated historical context at each stop.</p>
+    <div class="virtual-tour-frame" style="padding:0; border:none; background:#000; height:600px; display:block;">
+      <iframe
+        src="Build/index.html"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        allowfullscreen
+        style="border:none;">
+      </iframe>
+    </div>
+  </div>
+</div>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in, .timeline-item').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
